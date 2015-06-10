@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+/* macro */
+#define PF(...) printf(__VA_ARGS__);
+
+int main(void)
+{
+	PF("This is a test\n");
+	PF("1 + 1 = %d\n", 2);
+	return 0;
+}

@@ -1,0 +1,268 @@
+# file list.h
+/* judgement */
+#ifndef LISH_H
+#define LISH_H 
+
+#include <stdbool.h>
+
+/* macro */
+#define TSIZE 45
+#define DEBUG 0
+#if DEBUG
+	#define CK(X) puts(X)
+#else
+	#define CK(X) ;
+#endif
+
+/* ADT */
+typedef struct contact {
+	char name[TSIZE];
+	int number; 
+} Item;
+
+typedef struct node {
+	Item item;
+	struct node * next;
+} Node;
+
+typedef Node * List;
+
+/*      ANOTHER WAY
+**  typedef struct list {
+**  	Node * head;
+**  	Node * end;
+**  } List;
+*/
+
+/* intializetion a list */
+void InitializeList(List * plist);
+
+/* judgement a list whether empty*/
+bool ListIsEmpty(const List * plist);
+
+/* judgement a list whether full */
+bool ListIsFull(const List * plist);
+
+/* return how many item in this list */
+unsigned int ListItemCount(const List * plist);
+
+/* add a new item at the last */
+bool AddItem(Item item, List * plist);
+
+/* each item using function */
+void Traverse(const List * plist, void (* pfun)(Item item));
+
+/* free memory */
+void EmptyTheList(List * plist);
+ 
+#endif
+
+
+
+# file list.c
+#include <stdio.h>
+#include <stdlib.h>
+#include "list.h"
+
+static void CopyToNode(Item item, Node * pnode);
+
+/* initializetion list */
+void InitializeList(List * plist)
+{
+	*plist = NULL;
+}
+
+/* judgement a list whether empty*/
+bool ListIsEmpty(const List * plist)
+{
+	if (*plist == NULL)
+		return true;
+	else
+		return false;
+}
+
+/* judgement a list whether full */
+bool ListIsFull(const List * plist)
+{
+	Node * prev;
+	bool full;
+	prev = (Node *)malloc(sizeof(Node));
+
+	if (prev == NULL)
+		full = true;
+	else
+		full = false;
+	
+	free(prev);
+	
+	return full;
+}
+
+/* return how many item in this list */
+unsigned int ListItemCount(const List * plist)
+{
+	unsigned int count = 0;
+	Node * prev = * plist;
+
+	while(prev != NULL) {
+		count ++;
+		prev = prev->next;
+	}
+
+	return count;
+}
+
+/* add a new item at the last */
+bool AddItem(Item item, List * plist)
+{
+	Node * pnew;
+	Node * scan = * plist;    //Node * scan; scan = &(*plist);
+	CK("l 58");
+	pnew = (Node *)malloc(sizeof(Node));
+	CK("l 60");
+	if (pnew == NULL)
+		return false;
+	CK("l 63");
+	CopyToNode(item, pnew);
+	pnew->next = NULL;
+	CK("l 69");
+	if (scan == NULL){
+		CK("l 71");
+		*plist = pnew;
+		CK("l 73");
+	}
+	else {
+		while(scan->next != NULL) {
+			CK("l 77");
+			scan = scan->next;
+		}
+		CK("l 80");
+		scan->next = pnew;
+	}
+	
+	return true;
+}
+
+/* each item using function */
+void Traverse(const List * plist, void (* pfun)(Item item))
+{
+	Node * prev = * plist;
+	while(prev != NULL) {
+		(* pfun)(prev->item);
+		prev = prev->next;
+	}
+}	
+
+/* free memory */
+void EmptyTheList(List * plist)
+{
+	Node * prev;
+	while(*plist != NULL) {
+		prev = (*plist)->next;
+		free(*plist);
+		*plist = prev;
+	}
+}
+
+/* copy item data in node */
+static void CopyToNode(Item item, Node * pnode)
+{
+	pnode->item = item;
+}
+
+
+
+# file main.c
+#include <stdio.h>
+#include <stdlib.h>
+#include "list.h"
+
+/* statement function */
+void showcontacts(Item item);
+
+int main(void)
+{
+	List contacts;
+	Item temp;
+
+	/* initializetion */
+	InitializeList(&contacts);
+	if (ListIsFull(&contacts)) {
+		fprintf(stderr, "No memory available! Bye.\n");
+		exit(1);
+	}
+
+	puts("Enter frist contact name: ");
+	while(gets(temp.name) != NULL && temp.name[0] != '\0') {
+		printf("Enter %s number: ", temp.name);
+		scanf("%d", &temp.number);
+		while(getchar() != '\n')
+			continue;
+		CK("26");
+		if(AddItem(temp, &contacts) == false) {
+				puts("28");
+				fprintf(stderr,"Problem allocating memory.\n");
+			break;
+		}
+		CK("31");
+		if(ListIsFull(&contacts)) {
+			puts("The list is now full.");
+			break;
+		}
+		CK("37");
+		puts("Enter next contact name(empty line to quit): ");
+	}
+	
+	if (ListIsEmpty(&contacts))
+			puts("No data entered.");
+	else {
+		puts("Here is the contacts list: ");
+		Traverse(&contacts, showcontacts);
+	}
+
+	printf("You entered %d moives.\n", ListItemCount(&contacts));
+
+	EmptyTheList(&contacts);
+	puts("Bye!");
+
+	return 0;
+}
+
+void showcontacts(Item item)
+{
+	printf("Contact name: %s\n\tNumber: %d\n", item.name, item.number);
+}
+
+
+
+# result
+Enter frist contact name: 
+Mom
+Enter Mom number: 19998970987
+Enter next contact name(empty line to quit): 
+Dad
+Enter Dad number: 13556314163
+Enter next contact name(empty line to quit): 
+Brother
+Enter Brother number: 13926751057
+Enter next contact name(empty line to quit): 
+Myself_1
+Enter Myself_1 number: 13428326966
+Enter next contact name(empty line to quit): 
+Myself_2
+Enter Myself_2 number: 13729545205
+Enter next contact name(empty line to quit): 
+
+Here is the contacts list: 
+Contact name: Mom
+	Number: 1999897�
+Contact name: Dad
+	Number: 1355631�
+Contact name: Brother
+	Number: 1392675�
+Contact name: Myself_1
+	Number: 1342832�
+Contact name: Myself_2
+	Number: 1372954�
+You entered 5 contacts.
+Bye!

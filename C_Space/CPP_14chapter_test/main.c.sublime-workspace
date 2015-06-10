@@ -1,0 +1,254 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get",
+				"getInt"
+			],
+			[
+				"ge",
+				"getInt"
+			],
+			[
+				"me",
+				"method_help"
+			],
+			[
+				"metho",
+				"method_3"
+			],
+			[
+				"method",
+				"method_1"
+			],
+			[
+				"Col",
+				"COLS"
+			],
+			[
+				"col",
+				"COLS"
+			],
+			[
+				"rows",
+				"ROWS"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"p",
+				"printf	printf …"
+			],
+			[
+				"nums",
+				"nums_2"
+			],
+			[
+				"t",
+				"testRecursion"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"re",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"Reindent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"",
+				"View: Toggle Status Bar"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/cohbird/Desktop/MySpace/test.c",
+		"/home/cohbird/Desktop/test.html",
+		"/home/cohbird/Desktop/test.java",
+		"/home/cohbird/Desktop/Untitled Folder/Test",
+		"/home/cohbird/Desktop/niaoshu/scripts/speech_tgb.lua",
+		"/home/cohbird/Desktop/niaoshu/scripts/prefabs/tgb.lua",
+		"/home/cohbird/Desktop/niaoshu/scripts/prefabs/steamba.lua",
+		"/home/cohbird/Desktop/2ËÀÉñ/workshop-380122571/scripts/speech_reaper.lua",
+		"/home/cohbird/Desktop/2ËÀÉñ/workshop-380122571/scripts/prefabs/scythe.lua",
+		"/home/cohbird/Desktop/2ËÀÉñ/workshop-380122571/scripts/prefabs/reaper.lua",
+		"/home/cohbird/Desktop/DisplayTools.sh",
+		"/home/cohbird/Desktop/Untitled Document",
+		"/home/cohbird/Desktop/niaoshu/modinfo.lua",
+		"/home/cohbird/Desktop/niaoshu/modmain.lua",
+		"/home/cohbird/Desktop/niaoshu/modicon.tex",
+		"/home/cohbird/Desktop/MySpace/JMFSample.java",
+		"/home/cohbird/Desktop/test.c",
+		"/home/cohbird/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/cohbird/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"#include <stdio.h>\n#include <stdlib.h>\n#include <time.h>\n\nint getRandom(void); //set random\nint getGuest(void); //only accept a integer\nvoid Stratgame(void); //main method\n\nint main(void)\n{\nStratgame();\n\nreturn 0;\n}\n\nint getRandom(void)\n{\nsrand((unsigned int) time (NULL));\n\nreturn rand()%100;\n}\n\nint getGuest(void)\n{\nint guest;\n\nwhile(scanf(\"%d\", &guest) != 1) {\nwhile(getchar() != '\\n')\n;\n\nprintf(\"Error, enter again : \");\n}\n\nwhile(getchar() != '\\n')\n;\n\nreturn guest;\n}\n\nvoid Stratgame(void)\n{\nint num = getRandom();\nint guest;\nint count = 0; //count how number of times the user have used\n\nwhile(1) {\n//prompt user enter\nprintf(\"Enter u guest for number : \");\nguest = getGuest();\n\n//too hight\nif(guest > num)\nprintf(\"\\nU guest number is too hight!\\n\");\n\n//too low\nif(guest < num)\nprintf(\"\\nU guest number is too low!\\n\");\n\n//bingo\nif(guest == num) {\nprintf(\"\\nBingo!U r right!The answer is %d\\n\", num);\ncount++;\nbreak;\n}\ncount++;\n}\n\nprintf(\"U used %d of times to guest the answer.\\n\", count);\n}"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 72.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/home/cohbird/Desktop/test.c"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": false
+}

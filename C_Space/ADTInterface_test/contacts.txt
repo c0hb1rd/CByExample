@@ -1,0 +1,30 @@
+Enter frist contact name: 
+Mom
+Enter Mom number: 19998970987
+Enter next contact name(empty line to quit): 
+Dad
+Enter Dad number: 13556314163
+Enter next contact name(empty line to quit): 
+Brother
+Enter Brother number: 13926751057
+Enter next contact name(empty line to quit): 
+Myself_1
+Enter Myself_1 number: 13428326966
+Enter next contact name(empty line to quit): 
+Myself_2
+Enter Myself_2 number: 13729545205
+Enter next contact name(empty line to quit): 
+
+Here is the contacts list: 
+Contact name: Mom
+	Number: 1999897�
+Contact name: Dad
+	Number: 1355631�
+Contact name: Brother
+	Number: 1392675�
+Contact name: Myself_1
+	Number: 1342832�
+Contact name: Myself_2
+	Number: 1372954�
+You entered 5 contacts.
+Bye!

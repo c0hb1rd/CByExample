@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+
+/* contral absort */
+#define SWITCH 0 
+#if SWITCH 
+	#define NDEBUG
+#endif
+#include <assert.h>
+
+/* macro */ 
+#define NUM_1 0
+#define NUM_2 1
+#define JUDGE NUM_1 > NUM_2
+
+int main(void)
+{
+	assert(JUDGE);	
+
+	return 0;
+}
