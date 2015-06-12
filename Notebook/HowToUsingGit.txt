@@ -66,4 +66,24 @@ ps：clone支持https和ssh协议，但是https速度慢，所以使用ssh，当
 切换分支：git checkout <name>
 创建+切换分支：git checkout -b <name>
 合并某分支到当前分支：git merge <name>
+强行删除没合并的分支：git branch -D <name>
 
+多分支管理策略：团队合作时，各自create一个分支工作用，把master独立开来单独作为同步更新项目用，在工作分支做好相应的工作后与master merge后提交就ok
+
+Bug分支：bug分支专门用来调bug，临时建立，bug修复后再合并，简直方便nice，再切到bug分支前，用stash记录下当前工作的status，修复完bug回来工作时可以再stash恢复工作的status
+command：
+git stash    //记录工作区
+git stash apply    //恢复工作区但不删除记录
+git stash drop    //删除记录
+git stash pop    //恢复工作区并删除记录
+
+多人协作：当从远程库clone库时，会自动把本地的master与github中的master对应，并且默认远程库名字是origin，可以用remote查看远程库信息
+查看：git remote
+detail查看：git remote -v
+ps：默认情况下clone的库的branch只有master，要在本地对应dev可以用command：git checkout -b dev origin/dev
+
+提交冲突：当最新提交和推送的提交有冲突时，用pull抓取最新提交，在本地很并之，再推送就可以解决
+step：
+git pull
+git push repositoryName branchNAme
+ps：推送错误根据pull提示一步一步整就行，上面只是一个小例子，还有建立local branch与远程branch关联，command：git branch --set-upstream branchName origin/branchName
