@@ -58,3 +58,12 @@ ps：第一次使用推送时加上-u参数，可以关联并推送本地的bran
 格式：git clone ssh_address
 比如：git clone git@github.com:userName/path.git
 ps：clone支持https和ssh协议，但是https速度慢，所以使用ssh，当然有的公司内部只开了https端口，就只能使用https_address来把库拉到本地
+
+分支管理：Git把每一次提交都把它们串成一条时间线，这条时间线就是一个分支，在git分支里，master叫主分支
+查看分支：git branch
+创建分支：git branch <name>
+删除分支：git branch -d <name>
+切换分支：git checkout <name>
+创建+切换分支：git checkout -b <name>
+合并某分支到当前分支：git merge <name>
+
