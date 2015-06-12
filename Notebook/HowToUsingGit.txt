@@ -59,6 +59,13 @@ ps：第一次使用推送时加上-u参数，可以关联并推送本地的bran
 比如：git clone git@github.com:userName/path.git
 ps：clone支持https和ssh协议，但是https速度慢，所以使用ssh，当然有的公司内部只开了https端口，就只能使用https_address来把库拉到本地
 
+文件管理：
+添加文件到暂存区：git add <fileName>
+将所有待提交文件文件提交的库中：git commit -m "blablabla"
+同步本地库与远程库中的文件：git push <repositoryName> <branchName>
+同时删除本地文件与库中文件：git rm <fileName>，git commit -m "blablabla"
+删除库中文件不删除本地文件：git rm --cached <fileName>，git commit -m "blablabla"
+
 分支管理：Git把每一次提交都把它们串成一条时间线，这条时间线就是一个分支，在git分支里，master叫主分支
 查看分支：git branch
 创建分支：git branch <name>
@@ -87,3 +94,44 @@ step：
 git pull
 git push repositoryName branchNAme
 ps：推送错误根据pull提示一步一步整就行，上面只是一个小例子，还有建立local branch与远程branch关联，command：git branch --set-upstream branchName origin/branchName
+
+标签管理：发布版本时，可以在版本库中打一个标签，例如，v1.0，这样在将来想调用版本库的某个历史版本，直接选择标签就可以
+创建标签：git tag <name>
+为某个版本打标签：git tag <name> commit_id
+查看现已有标签：git tag
+查看标签信息：git show <tagName>
+创建带有说明的标签：git tag -a <tagName> -m "hint text"
+用私钥绑定标签：git -s <tagName> -m "blablabla"
+
+标签操作：
+推送标签：git push origin <tagName>
+推送所有未推送的标签：git push origin --tags
+删除一个本地标签：git tag -d <tagName>
+删除远程库标签：git push origin :refs/tags/<tagName>
+
+Github上的开源项目，想参与的话先fork到自己的库中，然后clone到本地并关联，然后do anything what u wanna do，然后pull request，如果审核过的话就会合并你的那部分
+
+自定义git：例如git config --global color.ui true，ui显色
+-------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------配置有很多，占坑，有时间再补充0.0----------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+忽略特殊文件：在.gitgnore文件中可以定义要忽略的文件，就是无视掉的文件，比如*.pyc，*.pyo，*.obj，*.class等一些编译过程生成的文件，没必要提交到远程库中的文件，就可以在.gitnore中配置忽略之
+
+配置命令别名：用alias可以为指令配置别名，类似C中的macro，还可以把某部分组合指令缩减成一个别名
+查看别名：git alias list，git config --get-regexp alias
+指令别名：git config --global alias.newCommandName <SourceCommandName>
+组合指令别名：git config --global alias.<newCommandName> <'combinCommandiName'>
+取消别名：git config --global --unset alias.<commandName>
+
+搭建自己的Github服务器：
+step(root)：
+1、安装git：apt-get install git
+2、创建git用户来运行服务：adduser git    
+3、收集公钥，放到/home/git/.ssh/authorized_keys文件里，一行一个
+4、选定目录为Git仓库：在选定的库目录下敲git init --bare sample.git
+5、把owner改为git：chown -R git:git sample.git
+6、禁用shell登录：安全起见，创建git的用户不允许登录shell，通过编辑/etc/passwd文件，找到这样的一行：git:x:1001:1001:,,,:/home/git:/bin/bash，改为：git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+7、clone库的地址为：git@server:<repositoryPath>sample.git
+
+That's all.
