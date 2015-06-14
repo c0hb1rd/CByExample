@@ -2,7 +2,7 @@
 import re
 import requests
 
-# 由于sina http头我还没搞清，是直接源码到本地分的
+# 由于sina http头我还没搞清，是直接抓源码到本地分的
 html = open('/home/cohbird/Desktop/yuhonghong.html', 'r')
 content = html.read()
 html.close()
