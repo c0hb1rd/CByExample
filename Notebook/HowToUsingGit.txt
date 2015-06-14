@@ -1,7 +1,6 @@
 来源：这是一个故事，一个牛人与权威机构的抗衡，说不上抗衡吧，看起来像是某机构被黑客界最会喷的，盆子界最会写代码的那位牛人虐的不要不要的
 事情是这样的：
-那位嘛，linus嘛，写了linux开源，可是代码量太大整理起来不好整，于是就想到分布式版本控制平台大家一起来撸码，BitMover看到项目是liuns的linux，就免费送他给平台用，结果人多了，牛人也多，就想破解这玩意免费是怎么判定的，然后被BitMover发现了，本来好好的一件事，linus拉下脸说几句话就过去嘛，可惜这牛人毕竟是某界最会喷，某界最会撸码的那位，用了两个星期自己C写了一个（当然毕竟使用过，大部分功能其实也都是模仿，但还是吊啊），分布式版本控制平台，就是git
-
+那位嘛，linus嘛，写了linux开源，可是代码量太大整理起来不好整，于是就想到分布式版本控制平台大家一起来撸码，BitMover看到项目是liuns的linux，就免费送给他平台用，结果人多了，牛人也多，就想破解这玩意免费是怎么判定的，然后被BitMover发现了，本来好好的一件事，linus拉下脸说几句话就过去嘛，可惜这牛人毕竟是某界最会喷，某界最会撸码的那位，用了两个星期自己C写了一个（当然毕竟使用过，大部分功能其实也都是模仿，但还是吊啊），分布式版本控制平台，就是git
 
 安装：apt-get install git，然后就是用户名和email了
 用户名：git config --global user.name xxxxx
@@ -58,3 +57,80 @@ ps：第一次使用推送时加上-u参数，可以关联并推送本地的bran
 格式：git clone ssh_address
 比如：git clone git@github.com:userName/path.git
 ps：clone支持https和ssh协议，但是https速度慢，所以使用ssh，当然有的公司内部只开了https端口，就只能使用https_address来把库拉到本地
+
+文件管理：
+添加文件到暂存区：git add <fileName>
+将所有待提交文件文件提交的库中：git commit -m "blablabla"
+同步本地库与远程库中的文件：git push <repositoryName> <branchName>
+同时删除本地文件与库中文件：git rm <fileName>，git commit -m "blablabla"
+删除库中文件不删除本地文件：git rm --cached <fileName>，git commit -m "blablabla"
+
+分支管理：Git把每一次提交都把它们串成一条时间线，这条时间线就是一个分支，在git分支里，master叫主分支
+查看分支：git branch
+创建分支：git branch <name>
+删除分支：git branch -d <name>
+切换分支：git checkout <name>
+创建+切换分支：git checkout -b <name>
+合并某分支到当前分支：git merge <name>
+强行删除没合并的分支：git branch -D <name>
+
+多分支管理策略：团队合作时，各自create一个分支工作用，把master独立开来单独作为同步更新项目用，在工作分支做好相应的工作后与master merge后提交就ok
+
+Bug分支：bug分支专门用来调bug，临时建立，bug修复后再合并，简直方便nice，再切到bug分支前，用stash记录下当前工作的status，修复完bug回来工作时可以再stash恢复工作的status
+command：
+git stash    //记录工作区
+git stash apply    //恢复工作区但不删除记录
+git stash drop    //删除记录
+git stash pop    //恢复工作区并删除记录
+
+多人协作：当从远程库clone库时，会自动把本地的master与github中的master对应，并且默认远程库名字是origin，可以用remote查看远程库信息
+查看：git remote
+detail查看：git remote -v
+ps：默认情况下clone的库的branch只有master，要在本地对应dev可以用command：git checkout -b dev origin/dev
+
+提交冲突：当最新提交和推送的提交有冲突时，用pull抓取最新提交，在本地很并之，再推送就可以解决
+step：
+git pull
+git push repositoryName branchNAme
+ps：推送错误根据pull提示一步一步整就行，上面只是一个小例子，还有建立local branch与远程branch关联，command：git branch --set-upstream branchName origin/branchName
+
+标签管理：发布版本时，可以在版本库中打一个标签，例如，v1.0，这样在将来想调用版本库的某个历史版本，直接选择标签就可以
+创建标签：git tag <name>
+为某个版本打标签：git tag <name> commit_id
+查看现已有标签：git tag
+查看标签信息：git show <tagName>
+创建带有说明的标签：git tag -a <tagName> -m "hint text"
+用私钥绑定标签：git -s <tagName> -m "blablabla"
+
+标签操作：
+推送标签：git push origin <tagName>
+推送所有未推送的标签：git push origin --tags
+删除一个本地标签：git tag -d <tagName>
+删除远程库标签：git push origin :refs/tags/<tagName>
+
+Github上的开源项目，想参与的话先fork到自己的库中，然后clone到本地并关联，然后do anything what u wanna do，然后pull request，如果审核过的话就会合并你的那部分
+
+自定义git：例如git config --global color.ui true，ui显色
+-------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------配置有很多，占坑，有时间再补充0.0----------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+忽略特殊文件：在.gitgnore文件中可以定义要忽略的文件，就是无视掉的文件，比如*.pyc，*.pyo，*.obj，*.class等一些编译过程生成的文件，没必要提交到远程库中的文件，就可以在.gitnore中配置忽略之
+
+配置命令别名：用alias可以为指令配置别名，类似C中的macro，还可以把某部分组合指令缩减成一个别名
+查看别名：git alias list，git config --get-regexp alias
+指令别名：git config --global alias.newCommandName <SourceCommandName>
+组合指令别名：git config --global alias.<newCommandName> <'combinCommandiName'>
+取消别名：git config --global --unset alias.<commandName>
+
+搭建自己的Github服务器：
+step(root)：
+1、安装git：apt-get install git
+2、创建git用户来运行服务：adduser git    
+3、收集公钥，放到/home/git/.ssh/authorized_keys文件里，一行一个
+4、选定目录为Git仓库：在选定的库目录下敲git init --bare sample.git
+5、把owner改为git：chown -R git:git sample.git
+6、禁用shell登录：安全起见，创建git的用户不允许登录shell，通过编辑/etc/passwd文件，找到这样的一行：git:x:1001:1001:,,,:/home/git:/bin/bash，改为：git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+7、clone库的地址为：git@server:<repositoryPath>sample.git
+
+That's all.
