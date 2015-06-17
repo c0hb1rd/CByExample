@@ -7,7 +7,7 @@ content = html.read()
 html.close()
 
 fl = re.findall('width="...px" height="...px" src="(http://ww..sinaimg.cn/cmw218/.................................jpg)">', content, re.S)
-i = 1;
+i = 1
 for each in fl:
     print 'Downloading:(%d)' % (i) + each
     pic = requests.get(str(each))
@@ -15,3 +15,4 @@ for each in fl:
     fp.write(pic.content)
     fp.close()
     i += 1
+
