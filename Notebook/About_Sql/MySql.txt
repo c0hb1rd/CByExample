@@ -27,7 +27,7 @@
 		(3)\u：用户名
 		(4)\h：主机名
 比如：
-用户名:root    主机名:localhos    数据库名:mysql
+用户名:root    主机名:localhost    数据库名:mysql
 mysql> prompt \u@\h (\d)> 
 -----------------------------------------------------------
 root@localhost (mysql)> 
