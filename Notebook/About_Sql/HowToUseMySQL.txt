@@ -200,6 +200,12 @@
 		(3)'!= ALL'或'<> ALL'运算符与'NOT IN'等效
 	3、由[NOT] EXISTS 引发的子查询：如果子查询返回如何row，EXISTS将返回TRUE，否则返回FALSE
 
-0x12 子查询连接
+0x12 子查询与连接
 	1、多表插入：INSERT [INTO] tb_name [(colu_name, ...)] SELECT ...;
-	2、多表更新：UPDATE tb_name SET colu_1_name = {expr | DEFAULT} [, colu_2_name = {expr ｜ DEFAULT}]... [WHERE where_condition];
+	2、多表更新：UPDATE tb_reference SET colu_1_name = {expr | DEFAULT} [, colu_2_name = {expr ｜ DEFAULT}]... [WHERE where_condition];
+	3、表的连接：
+		(1)连接格式：table_reference {[INNER | CROSS] JOIN | {LEFT | RIGHT} [OUTER] JOIN} table_referebce ON condition_expr
+		(2)内部连接：在Mysql中，JOIN， CROSS JOIN和INNER JOIN是等价的，都是内连接
+		(3)左外连接：LEFT [OUTER] JOIN
+		(4)右外连接：RIGHT [OUTER] JOIN
+	4、
