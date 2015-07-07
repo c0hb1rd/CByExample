@@ -203,9 +203,20 @@
 0x12 子查询与连接
 	1、多表插入：INSERT [INTO] tb_name [(colu_name, ...)] SELECT ...;
 	2、多表更新：UPDATE tb_reference SET colu_1_name = {expr | DEFAULT} [, colu_2_name = {expr ｜ DEFAULT}]... [WHERE where_condition];
-	3、表的连接：
+	3、多表删除：DELETE tb_1_name[.*] [, tb_2_name[.*]]... FROM table_reference [ORDER BY | GROUP BY [HAVING condition_having]] [WHERE where_condition]
+	4、表的连接(table_reference)：
 		(1)连接格式：table_reference {[INNER | CROSS] JOIN | {LEFT | RIGHT} [OUTER] JOIN} table_referebce ON condition_expr
-		(2)内部连接：在Mysql中，JOIN， CROSS JOIN和INNER JOIN是等价的，都是内连接
-		(3)左外连接：LEFT [OUTER] JOIN
-		(4)右外连接：RIGHT [OUTER] JOIN
-	4、
+		(2)内部连接：在Mysql中，JOIN， CROSS JOIN和INNER JOIN是等价的，都是内连接，也就是符合ON condition_expr的所有结果
+		(3)外部连接：显示左表全部记录或者右表全部记录，加上符合ON condition_expr的所有结果
+			[1]左外连接：LEFT [OUTER] JOIN，左表及ON condition_expr的所有结果
+			[2]右外连接：RIGHT [OUTER] JOIN，右表及ON condition_expr的所有结果
+			[3]多表连接：JOIN是可以多张表联用的，比如A_tb_name INNER JOIN B_tb_name INNER JOIN C_tb_name
+	5、创建数据表的同时将查询结果写入到数据表：
+		(1)格式：CREATE TABLE [IF NOT EXISTS] tb_name [(create_condition, ...) select_statement
+		(2)例子：CREATE TABLE tb_name(colu_1_name colu_condition, colu_2_name colu_condition, ...) SELECT tb_colu_name FROM tb_name [ORDER BY | GROUP BY] [WHERE where_condition]
+
+0x13 无限级分类表设计
+	1、自身连接：同一个数据表对本身进行连接操作
+	2、连接操作：因为是对同一张表进行操作，所以需要给表起多个别名，以起到让数据库能过判断使用哪个字段的作用(取别名，让数据库判断为是两张表)
+	比如：
+	SELECT * FROM tb_name AS t1 JOIN tb_name AS t2 ON t1.colu_name = t2.colu_name;
