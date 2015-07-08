@@ -252,6 +252,31 @@
 		(1)NOW()：print返回当前时间
 		(2)CURDATE()：print返回当前日期
 		(3)CURTIME()：print返回当前时间
-		(4)DATE_ADD()：
-		(5)DATEDIFF()：
-		(6)DATE_FORMAT()：
+		(4)DATE_ADD(arg1, arg2)：以arg1的日期为基础，加上arg2的日期差，打印返回，比如"SELECT DATE_ADD('2015-7-8', INTERVAL 3 WEEK)"
+		(5)DATEDIFF(arg1, arg2)：返回arg1与arg2之间的时间差，比如DATEDIFF('2014-7-7', '2015-7-7')，得出-365
+		(6)DATE_FORMAT(arg1, arg2)：格式化日期格式，比如DATE_FORMAT('2015-7-7', '%m/%d/%Y')，得到07/07/2015
+	5、信息函数
+		(1)CONNETCION_ID()：返回当前连接的ID，线程ID
+		(2)DATEVASES()：返回当前数据库
+		(3)LAST)INSERT_ID()：返回最后插入记录的ID
+		(4)USER()：返回当前用户
+		(5)VERSION()：返回当前版本信息
+	6、常用聚合函数（只有一个返回值）
+		args：符合类型参数无限个数，可以时几个数值、表的某一个字段列
+		(1)AVG(args)：求平均值
+		(2)COUNT(args)：计数器
+		(3)MAX(args)：求最大值
+		(4)MIN(args)：求最小值
+		(5)SUM(args)：求和
+	7、常用加密函数
+		(1)MD5(arg1)：信息摘要算法，对arg1使用md5加密，可以嵌套加密，比如MD5(MD5(MD5('password'))),mysql中MD5是32位十六进制码
+		(2)PASSWORD(arg1)：密码算法，对arg1用密码算法加密，mysql中是*加40位十六进制码
+
+0x15 自定义函数
+	1、格式：CREATE FUNCTION function_name RETURNS {STRING | INTEGER | REAL | DECIMAL} {[ETURN routine_body] | [BEGIN routine_body RETURN routine_body END]}
+	比如：
+	CREATE FUNCTION fun1(date DATETIME) 
+	RETURNS VARCHAR(20)
+	RETURN DATE_FORMAT(date, '%m/%d/%Y');
+	-------------------------------------------------------
+	格式化函数，将日期格式化为m/d/Y形式
