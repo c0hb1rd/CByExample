@@ -220,3 +220,38 @@
 	2、连接操作：因为是对同一张表进行操作，所以需要给表起多个别名，以起到让数据库能过判断使用哪个字段的作用(取别名，让数据库判断为是两张表)
 	比如：
 	SELECT * FROM tb_name AS t1 JOIN tb_name AS t2 ON t1.colu_name = t2.colu_name;
+
+0x14 函数
+	1、字符函数：
+		(1)CONCAT(arg1, arg2)：连接字符串arg1和arg2，arg1为字符串类型，arg2为字符串类型
+		(2)CONCAT_WS(arg1, arg2, arg3)：使用指定的分隔符进行字符连接，arg1为使用的分隔符，arg2与arg3为要连接的两个字符串
+		(3)FORMAT(arg1, arg2)：格式化数字,，arg1为数字，arg2为保留的小数位
+		(4)LOWER(arg1)：将字符串改为全小写
+		(5)UPPER(arg1)：将字符串改为全大写
+		(6)LEFT(arg1, arg2)：从左开始读取字符串arg1，读取个数为arg2
+		(7)RIGHT(arg1, arg2)：从右开始读取字符串agr1，读取个数为arg2
+		(8)LENGTH(arg1)：返回arg1的长度
+		(9)LTRIM(arg1)：删除arg1字符串中的前导空格
+	   (10)RTRIM(arg1)：删除arg1字符串中的后续空格
+	   (11)TRIM(arg1)：删除arg1字符串中前导和后续的空格，也可以删除特定的字符，arg1写为“LEADING CHAR_TYPE FROM STRING_TYPE”
+	   (12)REPLACE(arg1, arg2, arg3)：将字符串arg1中的指定字符arg2替换为特定字符arg3
+	   (13)SUBSTRING(arg1, arg2[, arg3])：截取字符串arg1，从索引arg2开始截取，如果索引arg3存在，则截取到arg3，否则截取到结尾，类python，起始索引arg2可以位负数，指倒数第几位，mysql不同编程语言，索引开始为1不是0，且arg3不能为负数
+	2、数值函数与运算符
+		(1)CEIL(arg1)：向上取整，进一取整，也就是3.01取为4
+		(2)DIV：整数除法运算符, 用法为“arg1 DIV arg2”
+		(3)FLOOR(arg1)：向下取整，舍一取整，也就是3.99取为3
+		(4)MODE：取模，也就是'%'，等价，整数浮点数都可用
+		(5)POWER(arg1, arg2)：幂运算,arg1的arg2次方
+		(6)ROUND(arg1, arg2)：四舍五入，保留arg1小数点后arg2位小数
+		(7)TRUNCATE(arg1, agr2)：截断，不四舍五入，保留arg1小数点后arg2位小数，arg2可为负数，比如-1，把个位上的数‘0’化
+	3、比较运算符与函数
+		(1)[NOT] arg1 BETWEEN arg2 AND arg3：判断arg1是否在arg2与arg3之间，返回1为真，0为假
+		(2)[NOT] arg1 IN(arg2, arg3, arg4, ...)：判断arg1是否在IN给出的值，存在为1真，否则0假
+		(3)IS [NOT] NULL：判断是否为空，比如“SELECT NULL IS NULL”,返回1真，“SELECT NULL IS NOT NULL”，返回0假
+	4、日期时间函数
+		(1)NOW()：print返回当前时间
+		(2)CURDATE()：print返回当前日期
+		(3)CURTIME()：print返回当前时间
+		(4)DATE_ADD()：
+		(5)DATEDIFF()：
+		(6)DATE_FORMAT()：
